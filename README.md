@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Juju Otaku 2.0
 
 Platform streaming anime modern yang dibangun dengan Next.js dan fitur authentication lengkap.
@@ -109,3 +110,7 @@ Open Kontribusi, issues, dan feature requests!
 **Latest Maintainer**: [SankaVollerei](https://github.com/SankaVollereii)
 
 Special thanks to [Rhakelino](https://github.com/Rhakelino) untuk versi original.
+=======
+# AniStream
+Pengembangan web streaming Anime
+>>>>>>> 74c816438ecb33ada1c13c95ad8b5d2bc65cf1d5
