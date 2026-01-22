@@ -1,0 +1,182 @@
+"use client";
+
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+
+function AnimeCard({ anime }) {
+    return (
+        <Link href={`/detail/${anime.slug}`} className="group">
+            <div className="aspect-2/3 w-full overflow-hidden rounded-lg bg-neutral-800 relative">
+                <Image
+                    src={anime.poster}
+                    alt={anime.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    onError={(e) => e.currentTarget.src = 'https://placehold.co/400x600/171717/ef4444?text=Error'}
+                />
+            </div>
+            <h3 className="mt-2 text-sm font-medium text-neutral-200 truncate group-hover:text-pink-500">
+                {anime.title}
+            </h3>
+            <p className="text-xs text-neutral-400">{anime.type || 'N/A'}</p>
+        </Link>
+    );
+}
+
+function Loader() {
+    return (
+        <div className="col-span-full flex justify-center items-center py-8">
+            <div className="w-10 h-10 border-4 border-neutral-700 border-t-pink-500 rounded-full animate-spin"></div>
+        </div>
+    );
+}
+
+function LetterFilter({ selectedLetter, onLetterChange }) {
+    const letters = [...Array(26)].map((_, i) => String.fromCharCode(65 + i));
+
+    return (
+        <div className="flex flex-wrap justify-center gap-2 mb-8 max-w-2xl mx-auto">
+            {letters.map((letter) => (
+                <button
+                    key={letter}
+                    onClick={() => onLetterChange(letter)}
+                    className={`
+            w-10 h-10 flex items-center justify-center font-bold text-sm rounded-md transition-all
+            ${selectedLetter === letter
+                            ? 'bg-pink-600 text-white shadow-lg'
+                            : 'bg-neutral-800 text-neutral-400 hover:bg-neutral-700 hover:text-white'
+                        }
+          `}
+                >
+                    {letter}
+                </button>
+            ))}
+        </div>
+    );
+}
+
+async function fetchAnimePage(page, letter) {
+    try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        const params = new URLSearchParams({
+            letter: letter,
+            page: page.toString(),
+        });
+
+        const response = await fetch(`${apiUrl}/animelist?${params.toString()}`);
+
+        if (!response.ok) {
+            throw new Error(`Gagal mengambil data: ${response.status}`);
+        }
+
+        const result = await response.json();
+        return result.animes || [];
+
+    } catch (error) {
+        console.error("Gagal mengambil data anime:", error);
+        return [];
+    }
+}
+
+
+export default function AnimeListClient({ initialData, initialLetter }) {
+    const [animes, setAnimes] = useState(initialData || []);
+    const [page, setPage] = useState(2);
+    const [isLoading, setIsLoading] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
+    const loaderRef = useRef(null);
+
+    const [selectedLetter, setSelectedLetter] = useState(initialLetter);
+
+    const handleLetterChange = useCallback(async (letter) => {
+        if (letter === selectedLetter || isLoading) return;
+
+        setSelectedLetter(letter);
+        setIsLoading(true);
+        setAnimes([]);
+        setPage(1);
+        setHasMore(true);
+
+        const newAnimes = await fetchAnimePage(1, letter);
+
+        setAnimes(newAnimes);
+        setPage(2);
+        if (newAnimes.length === 0) {
+            setHasMore(false);
+        }
+
+        setIsLoading(false);
+    }, [selectedLetter, isLoading]);
+
+    const loadMoreAnimes = useCallback(async () => {
+        if (isLoading || !hasMore) return;
+
+        setIsLoading(true);
+
+        const newAnimes = await fetchAnimePage(page, selectedLetter);
+
+        if (newAnimes.length > 0) {
+            setAnimes((prevAnimes) => [...prevAnimes, ...newAnimes]);
+            setPage((prevPage) => prevPage + 1);
+        } else {
+            setHasMore(false);
+        }
+
+        setIsLoading(false);
+    }, [page, selectedLetter, isLoading, hasMore]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    loadMoreAnimes();
+                }
+            },
+            { rootMargin: '200px' }
+        );
+
+        const currentLoader = loaderRef.current;
+        if (currentLoader) {
+            observer.observe(currentLoader);
+        }
+
+        return () => {
+            if (currentLoader) {
+                observer.unobserve(currentLoader);
+            }
+        };
+    }, [loadMoreAnimes]);
+
+    return (
+        <div>
+            {/* Filter Huruf A-Z */}
+            <LetterFilter
+                selectedLetter={selectedLetter}
+                onLetterChange={handleLetterChange}
+            />
+
+            {/* Daftar anime */}
+            {isLoading && animes.length === 0 ? (
+                <Loader />
+            ) : (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-4 gap-y-6">
+                    {animes.map((anime) => (
+                        <AnimeCard key={`${anime.slug}-${anime.title}`} anime={anime} />
+                    ))}
+                </div>
+            )}
+
+            <div ref={loaderRef} className="h-10">
+                {isLoading && animes.length > 0 && hasMore && <Loader />}
+            </div>
+
+            {!hasMore && !isLoading && (
+                <div className="col-span-full text-center py-8 text-neutral-500">
+                    Sudah mencapai akhir daftar untuk huruf '{selectedLetter}'.
+                </div>
+            )}
+        </div>
+    );
+}
