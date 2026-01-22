@@ -13,16 +13,11 @@ Platform streaming anime modern yang dibangun dengan Next.js dan fitur authentic
 
 **Anime API**: [https://www.sankavollerei.com/anime](https://www.sankavollerei.com/anime)
 
-## 🔗 Project History
-
-- **Original Source**: [Rhakelino/juju-otaku2.0](https://github.com/Rhakelino/juju-otaku2.0)
-- **Latest Version**: [SankaVollereii/juju-otaku2.0](https://github.com/SankaVollereii/juju-otaku2.0)
-
 ## 📦 Instalasi
 
 ```bash
 # Clone repository
-git clone https://github.com/SankaVollereii/juju-otaku2.0.git
+git clone https://github.com/AdnNyx/AniStream.git
 cd juju-otaku2.0
 
 # Install dependencies
