@@ -18,7 +18,7 @@ Platform streaming anime modern yang dibangun dengan Next.js dan fitur authentic
 ```bash
 # Clone repository
 git clone https://github.com/AdnNyx/AniStream.git
-cd juju-otaku2.0
+cd AniStream
 
 # Install dependencies
 npm install
