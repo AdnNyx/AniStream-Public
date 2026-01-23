@@ -69,8 +69,6 @@ bun dev
 
 Buka [http://localhost:3000](http://localhost:3000) di browser untuk melihat hasilnya.
 
-Anda dapat mulai mengedit halaman dengan memodifikasi `app/page.js`. Halaman akan otomatis update saat Anda mengedit file.
-
 ## 🏗️ Build & Production
 
 ```bash
