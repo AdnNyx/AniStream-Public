@@ -8,7 +8,7 @@ export default function Loading() {
       <div className="relative z-10 container mx-auto px-4 py-8 md:flex animate-pulse">
         {/* Poster Placeholder */}
         <div className="md:w-1/3 justify-center flex mb-6 md:mb-0 md:pr-8">
-          <div className="w-full aspect-[2/3] bg-slate-700 rounded-lg shadow-xl"></div>
+          <div className="w-full aspect-2/3 bg-slate-700 rounded-lg shadow-xl"></div>
         </div>
 
         {/* Detail Informasi Placeholder */}

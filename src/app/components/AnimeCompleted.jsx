@@ -9,7 +9,8 @@ import { ChevronRight, CheckCircle2 } from 'lucide-react'
 const AnimeCompleted = ({ api }) => {
   return (
     <section className="relative py-16 px-4 md:px-12 lg:px-24 bg-[#0b0c10]">
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-linear-to-r from-transparent via-purple-500/10 to-transparent"></div>
+      {/* Decorative Line dengan Purple Gradient */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-linear-to-r from-transparent via-purple-500/20 to-transparent"></div>
       
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
@@ -21,13 +22,13 @@ const AnimeCompleted = ({ api }) => {
             className="space-y-2"
           >
             <div className="flex items-center gap-2">
-              <CheckCircle2 size={14} className="text-purple-400" />
-              <span className="text-purple-400 text-xs font-black tracking-[0.2em] uppercase">
+              <CheckCircle2 size={14} className="text-violet-400" />
+              <span className="text-violet-400 text-xs font-black tracking-[0.2em] uppercase">
                 Koleksi Lengkap
               </span>
             </div>
             <h2 className="text-3xl md:text-4xl font-black text-white tracking-tighter">
-              Anime <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-indigo-500">Completed</span>
+              Anime <span className="text-transparent bg-clip-text bg-linear-to-r from-violet-400 via-purple-500 to-indigo-500 drop-shadow-[0_0_15px_rgba(168,85,247,0.3)]">Completed</span>
             </h2>
           </motion.div>
 
@@ -62,10 +63,11 @@ const AnimeCompleted = ({ api }) => {
           ))}
         </motion.div>
 
+        {/* Mobile View All Button */}
         <div className="mt-12 flex justify-center md:hidden">
           <Link 
             href="/completed" 
-            className="w-full text-center py-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold text-sm hover:bg-purple-500/10 hover:border-purple-500/50 transition-all"
+            className="w-full text-center py-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold text-sm hover:bg-purple-600/10 hover:border-purple-500/50 hover:text-purple-400 transition-all active:scale-95"
           >
             Lihat Seluruhnya
           </Link>
