@@ -1,4 +1,4 @@
-Platform streaming anime modern yang dibangun dengan Next.js dan fitur authentication lengkap.
+## Platform streaming anime modern yang dibangun dengan Next.js dan fitur authentication lengkap.
 
 ## 🚀 Teknologi
 
