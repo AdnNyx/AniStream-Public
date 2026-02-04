@@ -16,8 +16,8 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/AdnNyx/AniStream.git
-cd AniStream
+git clone https://github.com/AdnNyx/AniStream-Public.git
+cd AniStream-Public
 
 # Install dependencies
 npm install
