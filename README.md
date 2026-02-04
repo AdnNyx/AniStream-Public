@@ -95,10 +95,3 @@ Untuk panduan deployment Next.js, lihat [dokumentasi deployment Next.js](https:/
 
 Open Kontribusi, issues, dan feature requests!
 
-## 👨‍💻 Credits
-
-**API**: [SankaVollerei](https://www.sankavollerei.com/anime/)
-
-=======
-# AniStream-Public
->>>>>>> 8fa6b1780d389b8ec393c422ae620aeb06f1cd54
