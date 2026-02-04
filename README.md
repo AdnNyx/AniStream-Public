@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 Platform streaming anime modern yang dibangun dengan Next.js dan fitur authentication lengkap.
 
 ## 🚀 Teknologi
@@ -33,7 +31,7 @@ bun install
 
 ## ⚙️ Environment Variables
 
-Buat file `.env.local` di root project dan isi dengan variabel berikut:
+Ubah file `.env.example` menjadi `.env.local` di root project dan isi dengan variabel berikut:
 
 ```env
 # API Configuration
