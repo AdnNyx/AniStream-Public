@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-
-Platform streaming anime modern yang dibangun dengan Next.js dan fitur authentication lengkap.
+## Platform streaming anime modern yang dibangun dengan Next.js dan fitur authentication lengkap.
 
 ## 🚀 Teknologi
 
@@ -18,8 +16,8 @@ Platform streaming anime modern yang dibangun dengan Next.js dan fitur authentic
 
 ```bash
 # Clone repository
-git clone https://github.com/AdnNyx/AniStream.git
-cd AniStream
+git clone https://github.com/AdnNyx/AniStream-Public.git
+cd AniStream-Public
 
 # Install dependencies
 npm install
@@ -33,7 +31,7 @@ bun install
 
 ## ⚙️ Environment Variables
 
-Buat file `.env.local` di root project dan isi dengan variabel berikut:
+Ubah file `.env.example` menjadi `.env.local` di root project dan isi dengan variabel berikut:
 
 ```env
 # API Configuration
@@ -97,10 +95,3 @@ Untuk panduan deployment Next.js, lihat [dokumentasi deployment Next.js](https:/
 
 Open Kontribusi, issues, dan feature requests!
 
-## 👨‍💻 Credits
-
-**API**: [SankaVollerei](https://www.sankavollerei.com/anime/)
-
-=======
-# AniStream-Public
->>>>>>> 8fa6b1780d389b8ec393c422ae620aeb06f1cd54
